@@ -1,7 +1,7 @@
-#include "testApp.h"
+#include "ofApp.h"
 
 //--------------------------------------------------------------
-void testApp::setup(){
+void ofApp::setup(){
 	ofBackground(0,0,0);
 
 	//numSteps (the outputImage will be n-Times bigger than the windowsize), border(most times zero), save as one big image?
@@ -12,18 +12,21 @@ void testApp::setup(){
 }
 
 //--------------------------------------------------------------
-void testApp::update(){
+void ofApp::update(){
     ofSeedRandom(r);
 }
 
 //--------------------------------------------------------------
-void testApp::draw(){
-	//use this is you have custom camera setup:
+void ofApp::draw(){
 
-	//saver.setCameraData(pos, eye, up);
-	//saver.setPerspectiveData(fov, aspect, zNear, zFar);
+    //cam.begin();
 
-	saver.begin();
+    saver.begin();
+    
+    //use this is you have custom camera setup:
+    //saver.setCameraData(cam.getPosition(), cam.getTarget().getGlobalPosition(), cam.getUpDir());
+    //saver.setPerspectiveData(cam.getFov(), cam.getAspectRatio(), cam.getNearClip(), cam.getFarClip());
+
 	ofSetCircleResolution(100);
 	ofNoFill();
 	ofSetColor(255,255,255,255);
@@ -39,45 +42,49 @@ void testApp::draw(){
     ofCircle(200,250,ofRandom(50,150));
     ofDisableAlphaBlending();
 	saver.end();
+    //cam.end();
+    
 	ofSetColor(255,255,255,255);
 	ofDrawBitmapString("press s to save an image",20,20);
 	ofDrawBitmapString("press r to randomize",20,30);
+	
+	
 }
 
 //--------------------------------------------------------------
-void testApp::keyPressed(int key){
+void ofApp::keyPressed(int key){
 
 }
 
 //--------------------------------------------------------------
-void testApp::keyReleased(int key){
+void ofApp::keyReleased(int key){
 	//fileName (supports all image types ofImage does), flipY?
 	if(key=='s') saver.finish("frame_" + ofToString(ofGetFrameNum()) + "_high.png", true);
 	if(key=='r') {r = ofRandom(0,100); }
 }
 
 //--------------------------------------------------------------
-void testApp::mouseMoved(int x, int y ){
+void ofApp::mouseMoved(int x, int y ){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseDragged(int x, int y, int button){
+void ofApp::mouseDragged(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mousePressed(int x, int y, int button){
+void ofApp::mousePressed(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseReleased(int x, int y, int button){
+void ofApp::mouseReleased(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void testApp::windowResized(int w, int h){
+void ofApp::windowResized(int w, int h){
 
 }
 
